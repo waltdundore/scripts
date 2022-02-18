@@ -8,7 +8,8 @@ systemctl daemon-reload
 foreman-rake katello:delete_orphaned_content --trace
 foreman-rake katello:reimport --trace
 
-for i in pulp_resource_manager pulp_workers pulp_celerybeat; do service $i restart; done
+#Deprecated
+#for i in pulp_resource_manager pulp_workers pulp_celerybeat; do service $i restart; done
 
 for taskid in $(su - postgres -c "psql pulpcore -c \"COPY (SELECT pulp_id FROM core_task WHERE state = 'waiting' OR state = 'running') TO STDOUT;\""); do
        curl -H "content-type: application/json" --cacert /etc/pki/katello/certs/katello-server-ca.crt --cert /etc/pki/katello/certs/pulp-client.crt --key /etc/pki/katello/private/pulp-client.key -X PATCH -d "{\"state\": \"canceled\"}" https://$(hostname -f)/pulp/api/v3/tasks/${taskid}/
