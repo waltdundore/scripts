@@ -16,8 +16,8 @@ subscription-manager repos --enable=rhel-7-server-rpms \
 
 yum clean all
 
-yum localinstall https://yum.theforeman.org/releases/2.5/el7/x86_64/foreman-release.rpm
-yum localinstall https://yum.theforeman.org/katello/4.1/katello/el7/x86_64/katello-repos-latest.rpm
+yum localinstall https://yum.theforeman.org/releases/3.0/el7/x86_64/foreman-release.rpm
+yum localinstall https://yum.theforeman.org/katello/4.2/katello/el7/x86_64/katello-repos-latest.rpm
 yum localinstall https://yum.puppet.com/puppet6-release-el-7.noarch.rpm
 yum install -y centos-release-scl-rh
 yum -y install epel-release
