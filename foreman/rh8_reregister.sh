@@ -5,8 +5,8 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-yum clean all
-rm -rf /var/cache/yum/*
+dnf clean all
+rm -rf /var/cache/dnf/*
 subscription-manager remove --all
 subscription-manager unregister
 subscription-manager clean
@@ -15,4 +15,4 @@ rpm -qa | grep katello-ca
 
 puppet agent -tv
 
-yum -y update polkit samba*
+dnf -y update polkit samba*
