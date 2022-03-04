@@ -1,0 +1,17 @@
+
+module my-aptget 1.0;
+
+require {
+	type ptmx_t;
+	type container_t;
+	type devpts_t;
+	class chr_file { open read setattr write };
+}
+
+#============= container_t ==============
+
+#!!!! This avc is allowed in the current policy
+allow container_t devpts_t:chr_file { open setattr };
+
+#!!!! This avc is allowed in the current policy
+allow container_t ptmx_t:chr_file { read write };
